@@ -50,10 +50,16 @@ fun MyApp(
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Surface(color = MaterialTheme.colorScheme.primary,
     modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
-            Column(modifier = Modifier.fillMaxWidth().padding(24.dp)) {
+        Row (modifier = Modifier.padding(24.dp)
+        ){
+            Column(modifier = Modifier.weight(1f)) {
                 Text(text = "Hello")
                 Text(text = name)
             }
+            ElevatedButton(onClick = { /*TODO*/ }) {
+                Text(text = "Show More")
+            }
+        }
     }
 }
 
