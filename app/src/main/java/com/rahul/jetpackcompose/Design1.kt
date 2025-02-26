@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -33,6 +34,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -289,6 +292,65 @@ fun MySootheAppPortrait() {
     }
 }
 
+@Composable
+fun MySootheNavigationRail(
+    modifier: Modifier = Modifier
+){
+    NavigationRail(
+        modifier = modifier.padding(start = 8.dp, end = 8.dp),
+        containerColor = MaterialTheme.colorScheme.background
+    ) {
+        Column(
+            modifier = Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            NavigationRailItem(
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Spa ,
+                        contentDescription = null
+                    )
+                },
+                label = {
+                    Text(
+                        text = stringResource(R.string.home)
+                    )
+                },
+                selected = true,
+                onClick = {}
+            )
+
+            NavigationRailItem(
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle ,
+                        contentDescription = null
+                    )
+                },
+                label = {
+                    Text(
+                        text = stringResource(R.string.profile)
+                    )
+                },
+                selected = true,
+                onClick = {}
+            )
+        }
+    }
+}
+
+@Composable
+fun MySootheAppLandscape() {
+    JetpackComposeTheme {
+        Surface (color = MaterialTheme.colorScheme.background){
+            Row {
+                MySootheNavigationRail()
+                HomeScreen()
+            }
+        }
+    }
+}
 
 //@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 //@Composable
