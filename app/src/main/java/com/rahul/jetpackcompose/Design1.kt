@@ -10,20 +10,21 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -36,7 +37,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -53,9 +53,8 @@ class Design1 : ComponentActivity() {
             JetpackComposeTheme {
 //                FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
 //                AlignYourBodyRow(modifier = Modifier.padding(8.dp))
-                FavoriteCollectionGrid(modifier = Modifier.padding(8.dp))
-
-
+//                FavoriteCollectionGrid(modifier = Modifier.padding(8.dp))
+                HomeScreen()
             }
         }
     }
@@ -86,6 +85,7 @@ fun SearchBar(
             .heightIn(min = 56.dp)
     )
 }
+
 @Composable
 fun AlignYourBodyRow(
     modifier: Modifier = Modifier
@@ -135,6 +135,7 @@ fun AlignYourBodyElement(
         )
     }
 }
+
 data class FavoriteCollectionData(
     @DrawableRes val drawable: Int,
     @StringRes val text: Int
@@ -196,6 +197,60 @@ fun FavoriteCollectionCard(
     }
 }
 
+@Composable
+fun HomeScreen(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.verticalScroll(rememberScrollState())
+    ) {
+        Spacer(Modifier.height(16.dp))
+        SearchBar(Modifier.padding(horizontal = 16.dp))
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+
+        HomeSection(title = R.string.favorite_collections) {
+            FavoriteCollectionGrid()
+        }
+        Spacer(Modifier.height(16.dp))
+
+    }
+}
+
+@Composable
+fun HomeSection(
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Column(modifier) {
+        Text(
+            stringResource(title),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 16.dp)
+                .padding(horizontal = 16.dp)
+        )
+        content()
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+fun HomeSectionPreview() {
+    JetpackComposeTheme {
+        HomeSection(R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun homeScreenPreview() {
+    JetpackComposeTheme {
+        HomeScreen()
+    }
+}
 
 @Preview()
 @Composable
@@ -222,3 +277,4 @@ fun alignYourBodyPreview() {
 //        AlignYourBodyElement(R.drawable.img2 , R.string.align_your_body,modifier = Modifier.padding(8.dp))
     }
 }
+
