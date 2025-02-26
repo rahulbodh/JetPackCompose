@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -14,6 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -33,6 +38,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.rahul.jetpackcompose.data.AlignYourBodyItem
 import com.rahul.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class Design1 : ComponentActivity() {
@@ -40,7 +46,10 @@ class Design1 : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeTheme {
-                FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
+//                FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
+                AlignYourBodyRow(modifier = Modifier.padding(8.dp))
+
+
             }
         }
     }
@@ -71,6 +80,28 @@ fun SearchBar(
             .heightIn(min = 56.dp)
     )
 }
+@Composable
+fun AlignYourBodyRow(
+    modifier: Modifier = Modifier
+) {
+    val alignYourBodyData = listOf(
+        AlignYourBodyItem(R.drawable.img1, R.string.yoga),
+        AlignYourBodyItem(R.drawable.img2, R.string.cycling),
+        AlignYourBodyItem(R.drawable.img3, R.string.meditation),
+        AlignYourBodyItem(R.drawable.img4, R.string.running),
+        AlignYourBodyItem(R.drawable.img5, R.string.swimming)
+    )
+
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        modifier = modifier
+    ) {
+        items(alignYourBodyData) { item ->
+            AlignYourBodyElement(drawable = item.drawable, text = item.text, modifier)
+        }
+    }
+}
 
 
 @Composable
@@ -95,7 +126,6 @@ fun AlignYourBodyElement(
             text = stringResource(text),
             modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp),
             style = MaterialTheme.typography.bodyMedium,
-            color = Color.Blue
         )
     }
 }
@@ -134,6 +164,23 @@ fun FavoriteCollectionCardPreview(
 @Composable
 fun searchBarPreview() {
     JetpackComposeTheme {
+        SearchBar(modifier = Modifier.padding(8.dp))
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+@Composable
+fun FavoriteCollectionPreview() {
+    JetpackComposeTheme {
         FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
+    }
+}
+
+@Preview(showBackground = true, backgroundColor =0xF053EAE2)
+@Composable
+fun alignYourBodyPreview() {
+    JetpackComposeTheme {
+        AlignYourBodyRow()
+//        AlignYourBodyElement(R.drawable.img2 , R.string.align_your_body,modifier = Modifier.padding(8.dp))
     }
 }

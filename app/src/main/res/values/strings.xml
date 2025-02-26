@@ -5,4 +5,11 @@
     <string name="search">Search</string>
     <string name="name">Rahul Bodh</string>
     <string name="nature_meditations">Nature Meditations</string>
+    <string name="align_your_body">Align your body</string>">
+    <string name ="yoga">Yoga</string>
+    <string name="running">Running</string>
+    <string name="meditation">Meditation</string>
+    <string name="cycling">Cycling</string>
+    <string name="swimming">Swimming</string>
+
 </resources>
