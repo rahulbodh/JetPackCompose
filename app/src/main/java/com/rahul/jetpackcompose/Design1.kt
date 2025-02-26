@@ -33,6 +33,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -58,7 +59,7 @@ class Design1 : ComponentActivity() {
 //                FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
 //                AlignYourBodyRow(modifier = Modifier.padding(8.dp))
 //                FavoriteCollectionGrid(modifier = Modifier.padding(8.dp))
-                HomeScreen()
+                MySootheAppPortrait()
             }
         }
     }
@@ -239,7 +240,7 @@ fun HomeSection(
 }
 
 @Composable
-private fun BottomNavigation(modifier: Modifier){
+private fun BottomNavigation(modifier: Modifier = Modifier){
     NavigationBar (
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
         modifier = modifier
@@ -277,15 +278,27 @@ private fun BottomNavigation(modifier: Modifier){
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
-fun HomeSectionPreview() {
+fun MySootheAppPortrait() {
     JetpackComposeTheme {
-        HomeSection(R.string.align_your_body) {
-            AlignYourBodyRow()
+        Scaffold(
+            bottomBar = { BottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
         }
     }
 }
+
+
+//@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+//@Composable
+//fun HomeSectionPreview() {
+//    JetpackComposeTheme {
+//        HomeSection(R.string.align_your_body) {
+//            AlignYourBodyRow()
+//        }
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable
@@ -294,32 +307,32 @@ fun homeScreenPreview() {
         HomeScreen()
     }
 }
-
-@Preview()
-@Composable
-fun searchBarPreview() {
-    JetpackComposeTheme {
-        SearchBar(modifier = Modifier.padding(8.dp))
-    }
-}
-
-@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
-@Composable
-fun FavoriteCollectionPreview() {
-    JetpackComposeTheme {
-        FavoriteCollectionGrid(modifier = Modifier.padding(8.dp))
-//        FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun alignYourBodyPreview() {
-    JetpackComposeTheme {
-        AlignYourBodyRow()
-//        AlignYourBodyElement(R.drawable.img2 , R.string.align_your_body,modifier = Modifier.padding(8.dp))
-    }
-}
+//
+//@Preview()
+//@Composable
+//fun searchBarPreview() {
+//    JetpackComposeTheme {
+//        SearchBar(modifier = Modifier.padding(8.dp))
+//    }
+//}
+//
+//@Preview(showBackground = true, backgroundColor = 0xFFF0EAE2)
+//@Composable
+//fun FavoriteCollectionPreview() {
+//    JetpackComposeTheme {
+//        FavoriteCollectionGrid(modifier = Modifier.padding(8.dp))
+////        FavoriteCollectionCardPreview(R.drawable.img1,R.string.nature_meditations,modifier = Modifier.padding(8.dp))
+//    }
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun alignYourBodyPreview() {
+//    JetpackComposeTheme {
+//        AlignYourBodyRow()
+////        AlignYourBodyElement(R.drawable.img2 , R.string.align_your_body,modifier = Modifier.padding(8.dp))
+//    }
+//}
 
 @Preview(showBackground = true)
 @Composable
