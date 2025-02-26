@@ -26,9 +26,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -234,6 +238,45 @@ fun HomeSection(
     }
 }
 
+@Composable
+private fun BottomNavigation(modifier: Modifier){
+    NavigationBar (
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = modifier
+    ){
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Spa ,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(
+                    text = stringResource(R.string.home)
+                )
+            },
+            selected = true,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle ,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(
+                    text = stringResource(R.string.profile)
+                )
+            },
+            selected = true,
+            onClick = {}
+        )
+    }
+}
+
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 fun HomeSectionPreview() {
@@ -275,6 +318,14 @@ fun alignYourBodyPreview() {
     JetpackComposeTheme {
         AlignYourBodyRow()
 //        AlignYourBodyElement(R.drawable.img2 , R.string.align_your_body,modifier = Modifier.padding(8.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun bottonNavPreview() {
+    JetpackComposeTheme {
+        BottomNavigation(modifier = Modifier.padding(8.dp))
     }
 }
 

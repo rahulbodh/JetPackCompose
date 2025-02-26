@@ -12,5 +12,7 @@
     <string name="cycling">Cycling</string>
     <string name="swimming">Swimming</string>
     <string name="favorite_collections">Favorite Collections</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
 
 </resources>
