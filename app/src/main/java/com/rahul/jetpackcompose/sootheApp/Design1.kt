@@ -1,4 +1,4 @@
-package com.rahul.jetpackcompose
+package com.rahul.jetpackcompose.sootheApp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -50,8 +50,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rahul.jetpackcompose.data.AlignYourBodyItem
-import com.rahul.jetpackcompose.data.FavoriteCollectionData
+import com.rahul.jetpackcompose.R
 import com.rahul.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class Design1 : ComponentActivity() {
@@ -143,11 +142,6 @@ fun AlignYourBodyElement(
         )
     }
 }
-
-data class FavoriteCollectionData(
-    @DrawableRes val drawable: Int,
-    @StringRes val text: Int
-)
 
 @Composable
 fun FavoriteCollectionGrid(
