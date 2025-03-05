@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.motionEventSpy
@@ -33,7 +38,7 @@ class ChatActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Surface(modifier = Modifier.fillMaxWidth()) {
-                MessageCard(Message("Android", "Jetpack Compose"))
+                Conversation(SampleData.conversationSample)
             }
         }
     }
@@ -54,7 +59,11 @@ fun MessageCard(msg: Message) {
                 .border(1.5.dp , MaterialTheme.colorScheme.primary , CircleShape)
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+
+        var isExpanded by rememberSaveable { mutableStateOf(false) }
+        Column(
+            modifier = Modifier.clickable { isExpanded  = !isExpanded }
+        ) {
             Text(text = msg.author,
                 color = MaterialTheme.colorScheme.secondary,
                 style = MaterialTheme.typography.titleSmall
@@ -67,8 +76,9 @@ fun MessageCard(msg: Message) {
             ){
                 Text(
                     text = msg.body,
+                    modifier = Modifier.padding(all = 4.dp),
+                    maxLines = if (isExpanded) Int.MAX_VALUE else 1,
                     style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(all = 4.dp)
                 )
             }
 
