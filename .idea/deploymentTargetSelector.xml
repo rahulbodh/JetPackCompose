@@ -31,6 +31,7 @@
       </SelectionState>
       <SelectionState runConfigName="DayOne">
         <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>
